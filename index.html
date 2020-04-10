@@ -70,9 +70,8 @@
           </div>
         </div>
         <div class="card-body">
-          <div>
-            <div class="loader"></div>
-            <ul id="uploads"></ul>
+          <div class="row">
+            <div class="col-12" id="uploads"></div>
           </div>
         </div>
       </div>
@@ -98,16 +97,28 @@
     <script>
       $(function () {
         $("#selectFiles").on("change", function (e) {
-          var fileOverview;
+          var fileOverview = "";
 
           for (let file of Array.from(e.target.files)) {
-            fileOverview =
-              fileOverview + "<li>" + file.webkitRelativePath + "</li>";
+            fileOverview = fileOverview + file.webkitRelativePath + "<br>";
+
+            var filesSplitRow = fileOverview.split("<br>");
+
+            // Get rows of files and directories
+            var filesSplitRowView = "";
+            var filesSplitColumnView = "";
+            for (var i = 0; i < filesSplitRow.length; i++) {
+              filesSplitRowView = filesSplitRowView + "<tr><td>";
+
+              filesSplitRowView = filesSplitRowView + filesSplitRow[i];
+
+              filesSplitColumnView = filesSplitRow[i].split("/");
+
+              filesSplitRowView = filesSplitRowView + "</td></tr>";
+            }
+
+            $("#uploads").append(filesSplitRowView);
           }
-
-          $(".loader").hide();
-
-          $("#uploads").append(fileOverview);
         });
       });
 
