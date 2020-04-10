@@ -107,12 +107,16 @@
             // Get rows of files and directories
             var filesSplitRowView = "";
             var filesSplitColumnView = "";
-            for (var i = 0; i < filesSplitRow.length; i++) {
+            for (var row = 0; row < filesSplitRow.length; row++) {
               filesSplitRowView = filesSplitRowView + "<tr><td>";
 
-              filesSplitRowView = filesSplitRowView + filesSplitRow[i];
+              filesSplitRowView = filesSplitRowView + filesSplitRow[row];
 
-              filesSplitColumnView = filesSplitRow[i].split("/");
+              filesSplitColumns = filesSplitRowView.split("/");
+
+              // for (var col = 0; col < filesSplitColumns.length; col++) {
+              //   filesSplitRowView = "<td>" + filesSplitColumns[col] + "</td>";
+              // }
 
               filesSplitRowView = filesSplitRowView + "</td></tr>";
             }
